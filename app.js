@@ -31,7 +31,7 @@ function isAuthenticated(req, res, next) {
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
-  const match = username=='adminpst51' && password=='uti@5100';
+  const match = username=='adminpst51' && password=='jae@5100';
 
   if (!match) {
     return res.render('login', { error: 'Password salah' });
