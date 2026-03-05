@@ -31,7 +31,7 @@ function isAuthenticated(req, res, next) {
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
-  const match = username=='adminpst51' && password=='jae@5100';
+  const match = username == 'adminpst51' && password == 'jae@5100';
 
   if (!match) {
     return res.render('login', { error: 'Password salah' });
@@ -43,25 +43,25 @@ app.post('/login', async (req, res) => {
 });
 
 // Routing
-app.get('/',isAuthenticated, (req, res) => {
-    var jwt = require("jsonwebtoken");
+app.get('/', isAuthenticated, (req, res) => {
+  var jwt = require("jsonwebtoken");
 
-    var METABASE_SITE_URL = "https://metabase.statsbali.id";
-    var METABASE_SECRET_KEY = "e0d77f022c36172beafd31f743aa08e432a150e3d3df880c94ea8a7f3febcb14";
+  var METABASE_SITE_URL = "https://metabase.statsbali.id";
+  var METABASE_SECRET_KEY = "3350f6a87b5ef6c6acc5a19eac2fa907e050c25d48a134bb81b182d6d38d12d4";
 
-    var payload = {
-        resource: { dashboard: 12 },
-        params: {},
-        exp: Math.round(Date.now() / 1000) + (10 * 60) // 10 minute expiration
-    };
-    var token = jwt.sign(payload, METABASE_SECRET_KEY);
+  var payload = {
+    resource: { dashboard: 5 },
+     params: {},
+    exp: Math.round(Date.now() / 1000) + (10 * 60) // 10 minute expiration
+  };
+  var token = jwt.sign(payload, METABASE_SECRET_KEY);
 
-    var iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token +
-        "#bordered=true&titled=true";
-    res.render('index', { title: 'Beranda', year: new Date().getFullYear() ,iframeUrl : iframeUrl});
+  var iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token +
+    "#bordered=true&titled=true";
+  res.render('index', { title: 'Beranda', year: new Date().getFullYear(), iframeUrl: iframeUrl });
 });
 
-app.get('/logout',isAuthenticated, (req, res) => {
+app.get('/logout', isAuthenticated, (req, res) => {
   req.session.destroy(() => {
     res.redirect('/login');
   });
@@ -69,18 +69,18 @@ app.get('/logout',isAuthenticated, (req, res) => {
 
 
 app.get('/login', (req, res) => {
-    res.render('login', { title: 'Login', year: new Date().getFullYear() });
+  res.render('login', { title: 'Login', year: new Date().getFullYear() });
 });
 
 
 // 404 handler (opsional)
 app.use((req, res) => {
-    res.status(404).render('about', { title: '404 - Tidak Ditemukan', year: new Date().getFullYear() });
+  res.status(404).render('about', { title: '404 - Tidak Ditemukan', year: new Date().getFullYear() });
 });
 
 
 // Jalankan server
 const PORT = process.env.PORT || 9101;
 app.listen(PORT, () => {
-    console.log(`Server berjalan di http://localhost:${PORT}`);
+  console.log(`Server berjalan di http://localhost:${PORT}`);
 });
