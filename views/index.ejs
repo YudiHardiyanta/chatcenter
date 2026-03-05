@@ -1,5 +1,95 @@
-<%- include('partials/header', { title }) %>
-    <section>
-        <iframe src="<%= iframeUrl %>" frameborder="0" width="100%"  height="800vh" 100vh allowtransparency></iframe>
-    </section>
-<%- include('partials/footer', { year }) %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+    <style>
+        body {
+            background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926");
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+</head>
+
+<body class="min-h-screen flex flex-col relative">
+
+    <!-- overlay -->
+    <div class="absolute inset-0 bg-orange-600/80"></div>
+
+    <!-- particle -->
+    <div id="particles-js" class="absolute inset-0"></div>
+
+    <!-- content wrapper -->
+    <div class="relative flex flex-col min-h-screen">
+
+        <!-- NAVBAR -->
+        <nav class="bg-white/90 backdrop-blur-md shadow-md">
+
+            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+
+                <div class="text-xl font-bold text-orange-500">
+                    🔥 Chat Center BPS Provinsi Bali
+                </div>
+
+                <ul class="flex space-x-6 text-gray-700 font-medium">
+                    <li><a href="/logout" class="hover:text-orange-500">Logout</a></li>
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        
+
+            <section>
+                <iframe src="<%= iframeUrl %>" frameborder="0" width="100%" height="780vh"
+                    allowtransparency></iframe>
+            </section>
+
+        
+
+        <!-- FOOTER -->
+        <footer class="bg-white/90 backdrop-blur-md text-center py-4 text-gray-600">
+
+            © <%= year %> Chat Center BPS Provinsi Bali
+
+        </footer>
+
+    </div>
+
+    <script>
+
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 70 },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5 },
+                "size": { "value": 3 },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
